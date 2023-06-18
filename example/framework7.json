@@ -1,0 +1,24 @@
+{
+  "cwd": "/home/andreock/work/capacitor-plugin-wifi/example",
+  "type": [
+    "capacitor"
+  ],
+  "name": "Capacitor Wifi Plugin Example",
+  "framework": "svelte",
+  "template": "single-view",
+  "bundler": "vite",
+  "cssPreProcessor": false,
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkMode": true,
+    "iconFonts": true
+  },
+  "customBuild": false,
+  "pkg": "io.andreock.capacitorwifiplugin",
+  "capacitor": {
+    "platforms": [
+      "android"
+    ]
+  }
+}

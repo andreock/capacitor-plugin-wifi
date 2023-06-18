@@ -13,25 +13,57 @@ npx cap sync
 
 <docgen-index>
 
-* [`echo(...)`](#echo)
+* [`checkPermission()`](#checkpermission)
+* [`requestPermission()`](#requestpermission)
+* [`wifiScan()`](#wifiscan)
+* [`getWifiStatus()`](#getwifistatus)
 
 </docgen-index>
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
-### echo(...)
+### checkPermission()
 
 ```typescript
-echo(options: { value: string; }) => Promise<{ value: string; }>
+checkPermission() => Promise<{ status: string; }>
 ```
 
-| Param         | Type                            |
-| ------------- | ------------------------------- |
-| **`options`** | <code>{ value: string; }</code> |
+**Returns:** <code>Promise&lt;{ status: string; }&gt;</code>
 
-**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
+--------------------
+
+
+### requestPermission()
+
+```typescript
+requestPermission() => void
+```
+
+--------------------
+
+
+### wifiScan()
+
+```typescript
+wifiScan() => Promise<{ networks: unknown[]; error: string | undefined; }>
+```
+
+**Returns:** <code>Promise&lt;{ networks: unknown[]; error: string; }&gt;</code>
+
+--------------------
+
+
+### getWifiStatus()
+
+```typescript
+getWifiStatus() => Promise<{ status: boolean; }>
+```
+
+**Returns:** <code>Promise&lt;{ status: boolean; }&gt;</code>
 
 --------------------
 
 </docgen-api>
+
+Check example for more information.

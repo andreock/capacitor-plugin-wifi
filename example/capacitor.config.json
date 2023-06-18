@@ -1,11 +1,13 @@
 {
-  "appId": "com.example.plugin",
-  "appName": "example",
+  "appId": "io.andreock.capacitorwifiplugin",
+  "appName": "Capacitor Wifi Plugin Example",
   "bundledWebRuntime": false,
-  "webDir": "dist",
+  "npmClient": "npm",
+  "webDir": "www",
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 0
     }
-  }
+  },
+  "cordova": {}
 }
