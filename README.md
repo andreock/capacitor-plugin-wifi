@@ -1,6 +1,6 @@
 # capacitor-plugin-wifi
 
-Capacitor JS plugin to scan and connect to wifi
+Capacitor JS plugin that work as wrapper of WifiManager of Android
 
 ## Install
 
@@ -17,6 +17,7 @@ npx cap sync
 * [`requestPermission()`](#requestpermission)
 * [`wifiScan()`](#wifiscan)
 * [`getWifiStatus()`](#getwifistatus)
+* [Interfaces](#interfaces)
 
 </docgen-index>
 
@@ -46,10 +47,10 @@ requestPermission() => void
 ### wifiScan()
 
 ```typescript
-wifiScan() => Promise<{ networks: unknown[]; error: string | undefined; }>
+wifiScan() => Promise<{ networks: ScanResult[]; error: string | undefined; }>
 ```
 
-**Returns:** <code>Promise&lt;{ networks: unknown[]; error: string; }&gt;</code>
+**Returns:** <code>Promise&lt;{ networks: ScanResult[]; error: string; }&gt;</code>
 
 --------------------
 
@@ -63,6 +64,23 @@ getWifiStatus() => Promise<{ status: boolean; }>
 **Returns:** <code>Promise&lt;{ status: boolean; }&gt;</code>
 
 --------------------
+
+
+### Interfaces
+
+
+#### ScanResult
+
+| Prop               | Type                        |
+| ------------------ | --------------------------- |
+| **`BSSID`**        | <code>string</code>         |
+| **`SSID`**         | <code>string</code>         |
+| **`capabilities`** | <code>string</code>         |
+| **`centerFreq0`**  | <code>number \| null</code> |
+| **`centerFreq1`**  | <code>number \| null</code> |
+| **`frequency`**    | <code>number</code>         |
+| **`level`**        | <code>number</code>         |
+| **`timestamp`**    | <code>number</code>         |
 
 </docgen-api>
 

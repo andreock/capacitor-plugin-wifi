@@ -1,6 +1,6 @@
 import { WebPlugin } from '@capacitor/core';
 
-import type { CapacitorWifiPlugin } from './definitions';
+import type { CapacitorWifiPlugin, ScanResult } from './definitions';
 
 export class CapacitorWifiWeb extends WebPlugin implements CapacitorWifiPlugin {
   async checkPermission(): Promise<{status: string}> {
@@ -9,7 +9,7 @@ export class CapacitorWifiWeb extends WebPlugin implements CapacitorWifiPlugin {
   requestPermission(): void {
     console.error("Not implemented in web");
   };
-  wifiScan(): Promise< {networks: unknown[], error: string | undefined}> {
+  wifiScan(): Promise< {networks: ScanResult[], error: string | undefined}> {
     return Promise.resolve({ networks: [], error: "Not implemented in web" });
   };
   getWifiStatus(): Promise<{ status: boolean; }> {
