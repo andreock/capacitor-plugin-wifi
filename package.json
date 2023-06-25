@@ -17,10 +17,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/agromate-devs/capacitor-plugin-wifi.git"
+    "url": "git+https://github.com/Andrea055/capacitor-plugin-wifi.git"
   },
   "bugs": {
-    "url": "https://github.com/agromate-devs/capacitor-plugin-wifi/issues"
+    "url": "https://github.com/Andrea055/capacitor-plugin-wifi/issues"
   },
   "keywords": [
     "capacitor",
