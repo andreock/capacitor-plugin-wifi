@@ -1,6 +1,6 @@
 {
-  "name": "capacitor-plugin-wifi",
-  "version": "0.0.1",
+  "name": "capacitorjs-plugin-wifi",
+  "version": "1.0.0",
   "description": "Capacitor JS plugin to scan and connect to wifi",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
