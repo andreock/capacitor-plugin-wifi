@@ -5,6 +5,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.DhcpInfo;
+import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.util.Log;
@@ -19,6 +22,8 @@ import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.annotation.Permission;
 import com.getcapacitor.annotation.PermissionCallback;
+
+import org.json.JSONException;
 
 @CapacitorPlugin(
         name = "CapacitorWifi",
@@ -64,6 +69,7 @@ public class CapacitorWifiPlugin extends Plugin {
                 context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
         BroadcastReceiver wifiScanReceiver = new BroadcastReceiver() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onReceive(Context c, Intent intent) {
                 boolean success = intent.getBooleanExtra(
@@ -103,6 +109,103 @@ public class CapacitorWifiPlugin extends Plugin {
                 context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         JSObject ret = new JSObject();
         ret.put("status", implementation.getWifiStatus(wifiManager));
+        call.resolve(ret);
+    }
+
+    @PluginMethod
+    public void getSupportedBands(PluginCall call) {
+        Context context = getContext();
+        WifiManager wifiManager = (WifiManager)
+                context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        JSObject ret = new JSObject();
+        ret.put("result", implementation.bandSupported(wifiManager));
+        call.resolve(ret);
+    }
+
+    @PluginMethod
+    public void changeWifiStatus(PluginCall call) {
+        Context context = getContext();
+        WifiManager wifiManager = (WifiManager)
+                context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        JSObject ret = new JSObject();
+        boolean status = implementation.changeWifiStatus(wifiManager, Boolean.TRUE.equals(call.getBoolean("status")));
+        ret.put("status", status);
+        call.resolve(ret);
+    }
+
+    @PluginMethod
+    public void disconnect(PluginCall call) {
+        Context context = getContext();
+        WifiManager wifiManager = (WifiManager)
+                context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        JSObject ret = new JSObject();
+        boolean status = implementation.disconnect(wifiManager);
+        ret.put("status", status);
+        call.resolve(ret);
+    }
+
+    @PluginMethod
+    public void getDHCPInfo(PluginCall call) {
+        Context context = getContext();
+        WifiManager wifiManager = (WifiManager)
+                context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        JSObject ret = new JSObject();
+        DhcpInfo dhcpInfo = implementation.getDHCPInfo(wifiManager);
+        ret.put("dhcp", dhcpInfo);
+        call.resolve(ret);
+    }
+
+    @PluginMethod
+    public void getCurrentNetworkConfiguration(PluginCall call) {
+        Context context = getContext();
+        WifiManager wifiManager = (WifiManager)
+                context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        JSObject ret = new JSObject();
+        WifiInfo currentWifi = implementation.getCurrentNetworkConfiguration(wifiManager);
+        ret.put("ssid", currentWifi.getSSID());
+        ret.put("bssid", currentWifi.getBSSID());
+        ret.put("frequency", currentWifi.getFrequency());
+        ret.put("hidden", currentWifi.getHiddenSSID());
+        ret.put("ip_address", currentWifi.getIpAddress());
+        ret.put("link_speed", currentWifi.getLinkSpeed());
+        ret.put("mac_address", currentWifi.getMacAddress());    // TODO: Change it
+        ret.put("network_id", currentWifi.getNetworkId());
+        ret.put("rssi", currentWifi.getRssi());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {   // A10
+            ret.put("current_rx_speed", currentWifi.getRxLinkSpeedMbps());
+            ret.put("current_tx_speed", currentWifi.getTxLinkSpeedMbps());
+            ret.put("fqdn", currentWifi.getPasspointFqdn());
+            ret.put("passpoint_provider_friendly_name", currentWifi.getPasspointProviderFriendlyName());
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {   // A11
+            ret.put("max_rx_speed", currentWifi.getMaxSupportedRxLinkSpeedMbps());
+            ret.put("max_tx_speed", currentWifi.getMaxSupportedTxLinkSpeedMbps());
+            ret.put("wifi_standard", currentWifi.getWifiStandard());
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {   // A12
+            ret.put("security", currentWifi.getCurrentSecurityType());
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {    // A13
+            ret.put("mlo_lSinks", currentWifi.getAffiliatedMloLinks());
+            ret.put("mld", currentWifi.getApMldMacAddress().toString());
+            ret.put("mlo_id", currentWifi.getApMloLinkId());
+            ret.put("associated_mlo_links", currentWifi.getAffiliatedMloLinks());
+        }
+        call.resolve(ret);
+    }
+
+    @PluginMethod
+    public void isP2PSupported(PluginCall call) {
+        Context context = getContext();
+        WifiManager wifiManager = (WifiManager)
+                context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        JSObject ret = new JSObject();
+        boolean p2PSupported = implementation.isP2PSupported(wifiManager);
+        ret.put("p2p_supported", p2PSupported);
         call.resolve(ret);
     }
 }
