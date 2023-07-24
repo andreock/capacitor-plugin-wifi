@@ -191,7 +191,7 @@ public class CapacitorWifiPlugin extends Plugin {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {    // A13
             ret.put("mlo_lSinks", currentWifi.getAffiliatedMloLinks());
-            ret.put("mld", currentWifi.getApMldMacAddress().toString());
+            ret.put("mld", currentWifi.getApMldMacAddress());
             ret.put("mlo_id", currentWifi.getApMloLinkId());
             ret.put("associated_mlo_links", currentWifi.getAffiliatedMloLinks());
         }
