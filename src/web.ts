@@ -10,7 +10,27 @@ export class CapacitorWifiWeb extends WebPlugin implements CapacitorWifiPlugin {
     console.error("Not implemented in web");
   };
   wifiScan(): Promise< {networks: ScanResult[], error: string | undefined}> {
-    return Promise.resolve({ networks: [], error: "Not implemented in web" });
+    console.warn("Not implemented in web, returning a mock");
+    return Promise.resolve({ networks: [{
+      BSSID: "aa:bb:cc:dd:ee:ff",
+      SSID: "Test SSID",
+      capabilities: "example",
+      centerFreq0: 80,
+      centerFreq1: 80,
+      frequency: 0,
+      level: 20,
+      timestamp: 20
+    },
+    {
+      BSSID: "aa:bb:cc:dd:ee:fx",
+      SSID: "Test 2 SSID",
+      capabilities: "example",
+      centerFreq0: 80,
+      centerFreq1: 80,
+      frequency: 0,
+      level: 20,
+      timestamp: 20
+    }], error: "Not implemented in web" });
   };
   getWifiStatus(): Promise<{ status: boolean; }> {
       console.error("Not implemented in web");
