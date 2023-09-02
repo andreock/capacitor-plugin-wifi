@@ -23,6 +23,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.andreock.plugins.wifi.models.SupportedBand;
 import com.getcapacitor.BridgeActivity;
+import com.getcapacitor.JSObject;
 
 import java.util.List;
 
@@ -71,5 +72,20 @@ public class CapacitorWifi {
 
     public boolean isP2PSupported(WifiManager manager) {
         return manager.isP2pSupported();
+    }
+
+    public JSObject scanResultToJS(ScanResult scanResult) {
+        JSObject ret = new JSObject();
+        ret.put("BSSID", scanResult.BSSID);
+        ret.put("SSID", scanResult.SSID);
+        ret.put("capabilities", scanResult.capabilities);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ret.put("centerFreq0", scanResult.centerFreq0);
+            ret.put("centerFreq1", scanResult.centerFreq1);
+        }
+        ret.put("frequency", scanResult.frequency);
+        ret.put("level", scanResult.level);
+        ret.put("timestamp", scanResult.timestamp);
+        return ret;
     }
 }

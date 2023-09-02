@@ -14,6 +14,7 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PermissionState;
 import com.getcapacitor.Plugin;
@@ -24,6 +25,8 @@ import com.getcapacitor.annotation.Permission;
 import com.getcapacitor.annotation.PermissionCallback;
 
 import org.json.JSONException;
+
+import java.util.stream.Collectors;
 
 @CapacitorPlugin(
         name = "CapacitorWifi",
@@ -69,7 +72,6 @@ public class CapacitorWifiPlugin extends Plugin {
                 context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
         BroadcastReceiver wifiScanReceiver = new BroadcastReceiver() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onReceive(Context c, Intent intent) {
                 boolean success = intent.getBooleanExtra(
@@ -78,7 +80,7 @@ public class CapacitorWifiPlugin extends Plugin {
                 if (success) {
                     if(implementation.checkPermission(context)){
                         JSObject ret = new JSObject();
-                        ret.put("networks", wifiManager.getScanResults());
+                        ret.put("networks", new JSArray(wifiManager.getScanResults().stream().map(result -> implementation.scanResultToJS(result)).collect(Collectors.toList())));
                         ret.put("error", null);
                         call.resolve(ret);
                     }else {
