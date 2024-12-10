@@ -5,7 +5,7 @@ Capacitor JS plugin that work as wrapper of WifiManager of Android
 ## Install
 
 ```bash
-npm install capacitor-plugin-wifi
+npm install capacitorjs-plugin-wifi
 npx cap sync
 ```
 
