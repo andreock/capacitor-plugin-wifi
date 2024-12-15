@@ -3,8 +3,8 @@ import { WebPlugin } from '@capacitor/core';
 import type { CapacitorWifiPlugin, ScanResult, SupportedBands , Wifi, DhcpInfo } from './definitions';
 
 export class CapacitorWifiWeb extends WebPlugin implements CapacitorWifiPlugin {
-  async checkPermission(): Promise<{status: string}> {
-    return Promise.resolve({ status: "Not implemented in web" });
+  async checkPermission(): Promise<{status: boolean}> {
+    return Promise.resolve({ status: false });
   };
   requestPermission(): void {
     console.error("Not implemented in web");

@@ -5,7 +5,7 @@ Capacitor JS plugin that work as wrapper of WifiManager of Android
 ## Install
 
 ```bash
-npm install capacitor-plugin-wifi
+npm install capacitorjs-plugin-wifi
 npx cap sync
 ```
 
@@ -34,10 +34,10 @@ npx cap sync
 ### checkPermission()
 
 ```typescript
-checkPermission() => Promise<{ status: string; }>
+checkPermission() => Promise<{ status: boolean; }>
 ```
 
-**Returns:** <code>Promise&lt;{ status: string; }&gt;</code>
+**Returns:** <code>Promise&lt;{ status: boolean; }&gt;</code>
 
 --------------------
 
@@ -213,7 +213,9 @@ isP2PSupported() => Promise<{ p2p_supported: boolean; }>
 
 Construct a type with a set of properties K of type T
 
-<code>{ [P in K]: T; }</code>
+<code>{
+ [P in K]: T;
+ }</code>
 
 </docgen-api>
 

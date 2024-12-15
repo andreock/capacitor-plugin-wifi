@@ -1,5 +1,5 @@
 export interface CapacitorWifiPlugin {
-  checkPermission(): Promise<{status: string}>;
+  checkPermission(): Promise<{status: boolean}>;
   requestPermission(): void;
   wifiScan(): Promise< {networks: ScanResult[], error: string | undefined}>;
   getWifiStatus(): Promise<{status: boolean }>;
