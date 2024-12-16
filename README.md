@@ -1,6 +1,13 @@
+<p align="center">
+  <a href="https://www.npmjs.com/capacitorjs-plugin-wifi"><img src="https://img.shields.io/npm/v/capacitorjs-plugin-wifi.svg?logo=npm&logoColor=fff&label=NPM+package&color=limegreen" alt="capacitorjs-plugin-wifi on npm" /></a>&nbsp;
+  <a href="https://www.npmjs.com/capacitorjs-plugin-wifi"><img src="https://img.shields.io/npm/dw/capacitorjs-plugin-wifi.svg?logo=npm&logoColor=fff&label=NPM+package&color=limegreen" alt="capacitorjs-plugin-wifi on npm" /></a>
+</p>
+
 # capacitor-plugin-wifi
 
-Capacitor JS plugin that work as wrapper of WifiManager of Android
+Capacitor JS plugin that work as wrapper of WifiManager of Android.
+
+Note: version 5 of this plugin is compatible with capacitor v5. Version 6 will be compatible with capacitor v6.
 
 ## Install
 
